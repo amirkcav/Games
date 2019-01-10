@@ -1,0 +1,90 @@
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  transition: 1s;
+  padding: 30px;
+  border: 2px solid #999;
+  border-radius: 15px;
+  background: white;
+  float: left;
+  position: relative;
+}
+
+#board-wrapper {
+  margin: 50px auto;  
+}
+
+.card-wrapper {
+  box-sizing: border-box;
+  padding: 10px;  
+}
+
+.card-wrapper.selected {
+  z-index: 9;
+}
+
+#restart-button {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+  transition: padding 0.3s, font-size 0.3s;
+}
+
+#side-area {
+  display: inline-block;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.turns-label {
+  text-align: center;
+  font-size: 30px;
+}
+
+#turns-value {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+#game-over {
+  /* display: none; */
+  visibility: hidden;
+  position: absolute;
+  z-index: 90;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+#game-over-content {
+  transition: transform 2s;
+  color: green;
+  border: 2px green solid;
+  padding: 8px 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: #aaa 0 0 5px 1px;
+}
+
+#game-over.show {
+  visibility: visible;
+}
+
+#game-over.show #game-over-content {
+  transform: rotateZ(735deg) scale(2.5);
+}
+
+::ng-deep .start-game-modal {
+  width: 300px;
+}
+
+::ng-deep .start-game-modal .modal-body {
+  text-align: center;
+}
+
+::ng-deep .start-game-modal form {
+  padding: 0 20px;
+  text-align: left;
+}

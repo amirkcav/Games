@@ -1,0 +1,57 @@
+.card {
+  display: inline-block;
+  height: 100%;
+  width: 100%;  
+  border: #333 solid 1px;
+  border-radius: 10px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;  
+}
+
+.card-value {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card.selected {
+  /* background: #ccc; */
+  transform: rotateX(180deg) scale(1.2);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: inherit;
+  box-sizing: border-box;
+}
+
+.card-front {
+  transform: rotateX(180deg);
+  background: white;
+  box-shadow: #ccc 0 0 5px 0;
+  transition: background-color 0.7s;
+}
+
+.card-back {
+  background: repeating-linear-gradient(135deg, #ccc, white, #ccf 20px);
+}
+
+::ng-deep #board.board-got-pair .card.selected .card-front {
+  background: #afa;
+}
+
+.card.selected.in-pair {
+  transform: none;
+  border-style: dashed;
+  transition: none;
+}
+
+.card.selected.in-pair .card-back {
+  background: white;
+  pointer-events: none;  
+}

@@ -1,0 +1,46 @@
+:host {
+  z-index: 0;
+}
+
+.target {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #fca;
+  box-shadow: #ccc 0 0 10px 0;
+}
+
+.target.shot {
+  background: #f55;
+  animation-name: regularTargetShot;
+  animation-duration: 0.75s;
+  box-shadow: lightyellow 0 0 10px 0;
+}
+
+@keyframes regularTargetShot {
+  0%   {transform: scale(1.15) rotateY(30deg);}
+  33%  {transform: scale(0.92) rotateY(-30deg);}
+  66%  {transform: scale(1.1) rotateY(30deg); opacity: 1;}
+  100% {transform: scale(0.88) rotateY(-30deg); opacity: 0;}
+}
+
+.target-small {
+  width: 75px;
+  height: 75px;
+  background: #acf;
+  border-radius: 0;
+  box-shadow: white 0 0 10px 0;
+  /* transition: 1s; */
+}
+
+.target-small.shot {
+  animation-name: smallTargetShot;
+  animation-duration: 1s;
+  /* transform: rotateY(540deg); */
+}
+
+@keyframes smallTargetShot {
+  66% {opacity: 1;}
+  100% {transform: rotateY(560deg); opacity: 0;}
+}

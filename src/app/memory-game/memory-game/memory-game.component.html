@@ -1,0 +1,56 @@
+<div id="board-wrapper" *ngIf="gameStarted" class="clearfix" [ngStyle]="{ 'width': cardWidth * cols + 64 + 200 + 'px' }">
+  
+  <div id="board" [ngStyle]="{ 'width': cardWidth * cols + 64 + 'px' }" [ngClass]="{ 'board-got-pair': gotPairEffect }">
+
+    <ng-container *ngFor="let card of cards; let rowIndex = index">
+      <app-card class="card-wrapper" [card]="card" (click)="card?.inPair ? null : cardClick(card)" [ngClass]="{ 'selected': card?.isSelected }"
+        [ngStyle]="{ 'flex': '1 0 ' + (100/cols) + '%', 'height': cardHeight + 'px' }"></app-card> <!--, 'in-pair': card.inPair-->
+    </ng-container>
+    
+    <button id="restart-button" class="btn btn-primary" [ngClass]="{ 'btn-lg': gameOver }" (click)="restart()">{{ gameOver ? 'Play again' : 'Restart'}}</button>
+    
+    <div id="game-over" [ngClass]="{ 'show': gameOver }">
+      <div id="game-over-content">
+        congratulations!
+      </div>
+    </div>
+
+  </div>
+
+  <div id="side-area" [ngStyle]="{'width': '200px'}">
+    <label id="turns-title" class="turns-label">Turns</label> <br/>
+    <label id="turns-value" class="turns-label">{{ turns }}</label>
+  </div>
+  
+</div>
+
+<ng-template #startGameModal>
+  <div class="modal-header">
+    <h3 class="modal-title pull-left">Start Game</h3>
+    <button type="button" *ngIf="gameStarted" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="startGameForm" (ngSubmit)="startGame()" >
+      <div class="form-group">
+        <label>Rows</label>
+        <input type="number" id="rows" class="form-control" formControlName="rows"/>
+        <div *ngIf="startGameForm.controls.rows.invalid && startGameForm.controls.rows.touched" class="cross-validation-error-message alert alert-danger">
+            Rows is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Columns</label>
+        <input type="number" name="cols" class="form-control" formControlName="cols"/>
+        <div *ngIf="startGameForm.controls.cols.invalid && startGameForm.controls.cols.touched" class="cross-validation-error-message alert alert-danger">
+            Columns is required!
+        </div>
+      </div>
+      <div *ngIf="startGameForm.errors?.numberOfCardsEven" class="cross-validation-error-message alert alert-danger">
+          Number of cards must be even.
+      </div>
+      <button class="btn btn-primary" [disabled]="startGameForm.invalid">Start Game</button>
+    </form>
+  </div>
+</ng-template>

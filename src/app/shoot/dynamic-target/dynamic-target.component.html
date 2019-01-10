@@ -1,0 +1,3 @@
+<div class="target {{ type ? 'target-' + type : '' }}" [ngClass]="{ 'shot': isShot }" [ngStyle]="{ 'left': positionLeft + '%', 'top': positionTop + '%' }" (click)="!isShot && onShot()">
+  
+</div>
