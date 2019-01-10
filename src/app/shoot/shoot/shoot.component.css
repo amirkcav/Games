@@ -23,3 +23,17 @@
   transform: scale(1.3);
   color: blue;
 }
+
+#score-change-label {
+  visibility: hidden;
+  display: block;
+  font-size: 2.5rem;
+  transition: font-size 0.7s;
+  color: white;
+  text-shadow: red 0 0 10px;
+}
+
+#score-change-label.score-changed {
+  visibility: visible;
+  font-size: 7rem;
+}

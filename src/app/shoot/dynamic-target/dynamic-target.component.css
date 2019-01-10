@@ -42,6 +42,7 @@
   background: #acf;
   border-radius: 0;
   box-shadow: white 0 0 10px 0;
+  animation: smallTarget 0.5s infinite linear;
   /* transition: 1s; */
 }
 
@@ -49,6 +50,11 @@
   animation-name: smallTargetShot;
   animation-duration: 1s;
   /* transform: rotateY(540deg); */
+}
+
+@keyframes smallTarget {
+  0%, 100% { transform: rotateZ(-10deg); }
+  50% { transform: rotateZ(10deg); }
 }
 
 @keyframes smallTargetShot {
@@ -84,9 +90,8 @@
   height: 120px;
   border-radius: 50%;
   background: #aac;
-  /* animation: MovingRight 3s linear infinite, MovingUpDown 0.75s linear infinite; */
   animation: Moving 5s linear 1;
-  transition: 0.5s;
+  transition: 1s;
 }
 
 .target-moving.shot {
@@ -104,15 +109,4 @@
   75%  {transform: translate(300px, 50px);}
   87.5%  {transform: translate(450px, -50px);}
   100% {transform: translate(600px, 50px);}
-}
-
-@keyframes MovingUpDown {
-  0%   {transform: translateY(-100%);}
-  50%  {transform: translateY(100%);}
-  100% {transform: translateY(-100%);}
-}
-
-@keyframes MovingRight {
-  /* 0% {background: red;} */
-  100% {transform: translateX(500px);}
 }

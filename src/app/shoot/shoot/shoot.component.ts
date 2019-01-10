@@ -13,7 +13,10 @@ export class ShootComponent implements OnInit {
   @ViewChild('dynamic', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
   score = 0;
-  scoreChanged = false;
+  scoreChangedA = false;
+  scoreChangedB = false;
+  scoreChangedBTimeout: any;
+  scoreChange: number;
   newTargetInterval = 500;
   hideTargetInterval = 3000;
   typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving' ];
@@ -35,20 +38,29 @@ export class ShootComponent implements OnInit {
     // handle target shot.
     target.instance.shot.subscribe((shotTarget: DynamicTargetComponent) => {
       this.score += shotTarget.config.score; 
+      this.scoreChange = shotTarget.config.score; 
       // remove target
       setTimeout(() => {
         const targetIndex = this.viewContainerRef.indexOf(target.hostView);
         this.dynamicComponentService.removeDynamicTarget(targetIndex);
-      }, shotTarget.config.shotEffectDuration);
+      }, shotTarget.config.shotEffectDuration - 10); // -10 is to make sure that the element won't still be shown after the shot animation ended.
       this.scoreTitleEffect();
     });
   }
 
   scoreTitleEffect() {
-    this.scoreChanged = true;
+    this.scoreChangedA = true;
     setTimeout(() => {
-      this.scoreChanged = false;
+      this.scoreChangedA = false;
     }, 200);
+
+    if (this.scoreChangedBTimeout) {
+      clearTimeout(this.scoreChangedBTimeout);
+    }
+    this.scoreChangedB = true;
+    this.scoreChangedBTimeout = setTimeout(() => {
+      this.scoreChangedB = false;
+    }, 1000);
   }
 
   setTargetType(target: DynamicTargetComponent) {

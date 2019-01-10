@@ -1,7 +1,7 @@
 <div id="shoot-area">
 
-  <h2 id="score-title">Score: <b class="score" [ngClass]="{ 'score-changed': scoreChanged }">{{ score }}</b></h2>
-
+  <h2 id="score-title">Score: <b class="score" [ngClass]="{ 'score-changed': scoreChangedA }">{{ score }}</b></h2>
+  <label id="score-change-label" [ngClass]="{ 'score-changed': scoreChangedB }">+{{scoreChange}}</label>
   <!-- <button (click)="addTarget()">Add target</button> -->
 
   <ng-template #dynamic></ng-template>

@@ -31,9 +31,12 @@ export class DynamicComponentService {
     // auto hide.
     if (hideDelay) {
       setTimeout(() => {
-        const targetIndex = this.rootViewContainer.indexOf(component.hostView);
-        if (targetIndex >= 0) {
-          this.rootViewContainer.remove(targetIndex);
+        // don't auto-hide shot target (so shot animations won't be cut).
+        if (!component.instance.isShot) {
+          const targetIndex = this.rootViewContainer.indexOf(component.hostView);
+          if (targetIndex >= 0) {
+            this.rootViewContainer.remove(targetIndex);
+          }
         }
       }, hideDelay);
     }
