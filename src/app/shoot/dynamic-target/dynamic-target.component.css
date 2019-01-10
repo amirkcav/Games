@@ -4,14 +4,6 @@
 
 .target {
   position: absolute;
-}
-
-.target.shot {
-  background: #f55;
-  box-shadow: lightyellow 0 0 10px 0;
-}
-
-.target-regular {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -19,12 +11,25 @@
   box-shadow: #aaa 0 0 5px 0;
 }
 
-.target-regular.shot {
-  animation-name: regularTargetShot;
+.target.shot {
+  background: #f55;
+  box-shadow: lightyellow 0 0 10px 0;
+}
+
+.target-basic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #fca;
+  box-shadow: #aaa 0 0 5px 0;
+}
+
+.target-basic.shot {
+  animation-name: basicTargetShot;
   animation-duration: 0.75s;
 }
 
-@keyframes regularTargetShot {
+@keyframes basicTargetShot {
   0%   {transform: scale(1.15) rotateY(30deg);}
   33%  {transform: scale(0.92) rotateY(-30deg);}
   66%  {transform: scale(1.1) rotateY(30deg); opacity: 1;}
@@ -51,25 +56,63 @@
   100% {transform: rotateY(560deg); opacity: 0;}
 }
 
-.target-beat {
+.target-pulse {
   width: 50px;
   height: 50px;
   background: #afc;
   border-radius: 50%;
   box-shadow: #aaa 0 0 5px 0;
-  animation: beatingTarget 1s infinite;
+  animation: pulseTarget 1s infinite;
 }
 
-@keyframes beatingTarget {
+@keyframes pulseTarget {
   50% {transform: scale(3);}
   100% {transform: scale(1);}
 }
 
-.target-beat.shot {
-  animation: blowUp 1s;
+.target-pulse.shot {
+  animation: blowUp 0.75s;
 }
 
 @keyframes blowUp {
   0% {transform: scale(3);}
   100% {transform: scale(12); opacity: 0;}
+}
+
+.target-moving {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #aac;
+  /* animation: MovingRight 3s linear infinite, MovingUpDown 0.75s linear infinite; */
+  animation: Moving 5s linear 1;
+  transition: 0.5s;
+}
+
+.target-moving.shot {
+  width: 0;
+  height: 0;
+}
+
+@keyframes Moving {
+  0%   {transform: translate(-600px, 50px);}
+  12.5%   {transform: translate(-450px, -50px);}
+  25%   {transform: translate(-300px, 50px);}
+  37.5%   {transform: translate(-150px, -50px);}
+  50%  {transform: translate(0, 50px);}
+  62.5%  {transform: translate(150px, -50px);}
+  75%  {transform: translate(300px, 50px);}
+  87.5%  {transform: translate(450px, -50px);}
+  100% {transform: translate(600px, 50px);}
+}
+
+@keyframes MovingUpDown {
+  0%   {transform: translateY(-100%);}
+  50%  {transform: translateY(100%);}
+  100% {transform: translateY(-100%);}
+}
+
+@keyframes MovingRight {
+  /* 0% {background: red;} */
+  100% {transform: translateX(500px);}
 }

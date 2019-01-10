@@ -1,12 +1,13 @@
 export class TargetConfig {
 
   // duration in ms
-  shotEffectDuration: number;
-  score: number;
+  shotEffectDuration = 750;
+  score = 1;
 
-  constructor(type = 'regular') {
+  constructor(type = 'basic') {
+
     switch (type) {
-      case 'regular':
+      case 'basic':
         this.score = 1;
         this.shotEffectDuration = 750;
         break;
@@ -14,10 +15,19 @@ export class TargetConfig {
         this.score = 2;
         this.shotEffectDuration = 1000;
         break;
-      default:
-        this.score = 1;
+      case 'pulse':
+        this.score = 2;
         this.shotEffectDuration = 750;
         break;
+      case 'moving':
+        this.score = 4;
+        this.shotEffectDuration = 1000;
+        break;
+      // default:
+      //   this.score = 1;
+      //   this.shotEffectDuration = 750;
+      //   break;
     }
+
   }
 }

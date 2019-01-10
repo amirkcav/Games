@@ -28,8 +28,6 @@ export class DynamicComponentService {
     const component = factory
       .create(this.rootViewContainer.parentInjector);
     this.rootViewContainer.insert(component.hostView);
-    // // set the index of the component.
-    // component.instance.index = this.rootViewContainer.length - 1;
     // auto hide.
     if (hideDelay) {
       setTimeout(() => {
