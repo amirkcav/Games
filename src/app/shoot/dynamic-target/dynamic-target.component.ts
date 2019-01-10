@@ -35,12 +35,9 @@ export class DynamicTargetComponent implements OnInit {
     this.shot.emit(this);
   }
 
-  getTargetScore() {
-    return this.type === 'small' ? 2 : 1;
-  }
-
   setType(type: string) {
     this.type = type;
     this.config = new TargetConfig(type);
   }
+  
 }

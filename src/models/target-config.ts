@@ -15,6 +15,8 @@ export class TargetConfig {
         this.shotEffectDuration = 1000;
         break;
       default:
+        this.score = 1;
+        this.shotEffectDuration = 750;
         break;
     }
   }

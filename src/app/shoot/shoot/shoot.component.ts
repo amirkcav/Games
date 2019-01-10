@@ -16,6 +16,7 @@ export class ShootComponent implements OnInit {
   scoreChanged = false;
   newTargetInterval = 500;
   hideTargetInterval = 3000;
+  typesFrequency = [ 'regular', 'regular', 'small', 'beat' ];
 
   constructor(private dynamicComponentService: DynamicComponentService/*, private viewContainerRef: ViewContainerRef*/) { }
 
@@ -51,11 +52,8 @@ export class ShootComponent implements OnInit {
   }
 
   setTargetType(target: DynamicTargetComponent) {
-    const a = Math.ceil(Math.random() * 3);
-    const b = Math.ceil(Math.random() * 3);
-    if (a === b) {
-      target.setType('small');
-    }
+    const i = Math.floor(Math.random() * this.typesFrequency.length);
+    target.setType(this.typesFrequency[i]);
   }
 
 }
