@@ -28,7 +28,7 @@ const appRoutes: Routes = [
     BrowserModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {useHash: true})
   ],
   providers: [],
   bootstrap: [AppComponent],
