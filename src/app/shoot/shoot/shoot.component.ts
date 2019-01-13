@@ -21,7 +21,7 @@ export class ShootComponent implements OnInit {
   
   newTargetInterval = 500;
   hideTargetInterval = 3000;
-  typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving' ];
+  typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving', 'flashing' ];
 
   constructor(private dynamicComponentService: DynamicComponentService/*, private viewContainerRef: ViewContainerRef*/) { }
 

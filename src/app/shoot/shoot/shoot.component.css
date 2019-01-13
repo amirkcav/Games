@@ -9,7 +9,7 @@
 }
 
 #score-title {
-  display: block;
+  display: inline-block;
   z-index: 9;
   position: relative;
 }

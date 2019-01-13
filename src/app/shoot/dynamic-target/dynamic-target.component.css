@@ -111,3 +111,23 @@
   87.5%  {transform: translate(450px, -50px);}
   100% {transform: translate(600px, 50px);}
 }
+
+.target-flashing {
+  background: springgreen;
+  animation: Flashing 1.5s infinite;
+  box-shadow: none;
+  transition: 1s ease-in;
+}
+
+@keyframes Flashing {
+  0%   {background: springgreen;}
+  25%  {background: transparent; }
+  75%  {background: transparent; }
+  100% {background: springgreen;}
+}
+
+.target-flashing.shot {
+  animation: none;
+  transform: translateY(100vh);
+  opacity: 0;
+}

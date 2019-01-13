@@ -23,10 +23,14 @@ export class TargetConfig {
         this.score = 4;
         this.shotEffectDuration = 1000;
         break;
-      // default:
-      //   this.score = 1;
-      //   this.shotEffectDuration = 750;
-      //   break;
+      case 'flashing':
+        this.score = 4;
+        this.shotEffectDuration = 750;
+        break;
+      default:
+        this.score = 1;
+        this.shotEffectDuration = 750;
+        break;
     }
 
   }
