@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, ComponentRef } from '@angular/core';
 import { DynamicComponentService } from '../../services/dynamic-component.service';
 import { DynamicTargetComponent } from '../dynamic-target/dynamic-target.component';
+import { TimeoutService } from '../../services/timeout.service';
 
 @Component({
   selector: 'app-shoot',
   templateUrl: './shoot.component.html',
   styleUrls: ['./shoot.component.css'],
-  providers: [DynamicComponentService ]
+  providers: [DynamicComponentService, TimeoutService]
 })
 export class ShootComponent implements OnInit {
   
@@ -18,7 +19,8 @@ export class ShootComponent implements OnInit {
   scoreChangedBTimeout: any;
   scoreChange: number;
   missedClicks = 0;
-  
+  isPaused = false;
+
   newTargetInterval = 500;
   hideTargetInterval = 3000;
   typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving', 'flashing' ];
@@ -27,7 +29,9 @@ export class ShootComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.addTarget();
+      if (!this.isPaused) {
+        this.addTarget();
+      }
     }, this.newTargetInterval + Math.random() * 500);
   }
 
@@ -72,6 +76,11 @@ export class ShootComponent implements OnInit {
 
   onClick() {
     this.missedClicks++;
+  }
+
+  pause(pause?) {
+    this.isPaused = !this.isPaused;
+    this.dynamicComponentService.pause(this.isPaused);
   }
 
 }

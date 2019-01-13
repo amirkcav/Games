@@ -131,3 +131,7 @@
   transform: translateY(100vh);
   opacity: 0;
 }
+
+::ng-deep .paused .target {
+  animation-play-state: paused;
+}

@@ -14,8 +14,8 @@ export class DynamicTargetComponent implements OnInit {
   positionLeft: number;
   isShot = false;
   type: string;
-  // // index is set by the DynamicComponentService on component creation.
-  // index: number;
+  // needed for pause & resume.
+  timoutId: number;
   config = new TargetConfig();
 
   constructor() { }
