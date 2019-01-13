@@ -30,7 +30,8 @@ export class DynamicTargetComponent implements OnInit {
     this.positionTop = Math.random() * 95;
   }
 
-  onShot() {
+  onShot(event) {
+    event.stopPropagation();
     this.isShot = true;
     this.shot.emit(this);
   }

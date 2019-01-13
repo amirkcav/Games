@@ -9,7 +9,7 @@
 }
 
 #score-title {
-  display: inline-block;
+  display: block;
   z-index: 9;
   position: relative;
 }
@@ -36,4 +36,8 @@
 #score-change-label.score-changed {
   visibility: visible;
   font-size: 7rem;
+}
+
+#missed-clicks-label {
+  color: #999;
 }

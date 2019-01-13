@@ -17,6 +17,8 @@ export class ShootComponent implements OnInit {
   scoreChangedB = false;
   scoreChangedBTimeout: any;
   scoreChange: number;
+  missedClicks = 0;
+  
   newTargetInterval = 500;
   hideTargetInterval = 3000;
   typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving' ];
@@ -66,6 +68,10 @@ export class ShootComponent implements OnInit {
   setTargetType(target: DynamicTargetComponent) {
     const i = Math.floor(Math.random() * this.typesFrequency.length);
     target.setType(this.typesFrequency[i]);
+  }
+
+  onClick() {
+    this.missedClicks++;
   }
 
 }
