@@ -34,15 +34,24 @@
   transform: rotateX(180deg);
   background: white;
   box-shadow: #ccc 0 0 5px 0;
-  transition: background-color 0.7s;
+  transition: background-color 2s, box-shadow 1s;
 }
 
 .card-back {
-  background: repeating-linear-gradient(135deg, #ccc, white, #ccf 20px);
+  /* background: repeating-linear-gradient(135deg, #ccc, white, #ccf 20px); */
+  /* background: repeating-linear-gradient(135deg, white 7%, #59d 16%); */
+  background: repeating-linear-gradient(135deg, white 8%, #57a 16%, white 24%);
+  box-shadow: #666 0 0 0 3px inset;
 }
 
 ::ng-deep #board.board-got-pair .card.selected .card-front {
-  background: #afa;
+  animation: gotPair 0.7s;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes gotPair {
+  100% { box-shadow: #afa 0 0 0 50px inset; }
 }
 
 .card.selected.in-pair {
@@ -53,5 +62,6 @@
 
 .card.selected.in-pair .card-back {
   background: white;
+  box-shadow: none;
   pointer-events: none;  
 }

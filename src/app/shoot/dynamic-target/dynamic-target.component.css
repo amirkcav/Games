@@ -9,6 +9,7 @@
   border-radius: 50%;
   background: #fca;
   box-shadow: #aaa 0 0 5px 0;
+  z-index: 1;
 }
 
 .target.shot {
@@ -133,7 +134,7 @@
 }
 
 ::ng-deep .paused .target {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 .target-rotating {
