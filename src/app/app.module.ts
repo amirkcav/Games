@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './memory-game/card/card.component';
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     BrowserModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes, {useHash: true})
+    RouterModule.forRoot(appRoutes, {useHash: true}),
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent],

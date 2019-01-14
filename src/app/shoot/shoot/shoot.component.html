@@ -2,6 +2,7 @@
 
   <h2 id="score-title">Score: <b class="score" [ngClass]="{ 'score-changed': scoreChangedA }">{{ score }}</b></h2> <br/>
   <label id="missed-clicks-label">Missed clicks: {{ missedClicks }}</label>
+  <label id="new-level-label" [ngClass]="{ 'level-changed': levelChanged }">Level <span class="level-number">{{ currentLevelIndex + 1 }}</span></label>
   <label id="score-change-label" [ngClass]="{ 'score-changed': scoreChangedB }">+{{scoreChange}}</label>
   
   <label id="paused-label">Paused</label>

@@ -2,12 +2,15 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ComponentRef } from '@a
 import { DynamicComponentService } from '../../services/dynamic-component.service';
 import { DynamicTargetComponent } from '../dynamic-target/dynamic-target.component';
 import { TimeoutService } from '../../services/timeout.service';
+import { LevelsService } from '../../services/levels.service';
+import { Http } from '@angular/http';
+import { Level } from '../../../models/level';
 
 @Component({
   selector: 'app-shoot',
   templateUrl: './shoot.component.html',
   styleUrls: ['./shoot.component.css'],
-  providers: [DynamicComponentService, TimeoutService]
+  providers: [DynamicComponentService, TimeoutService, LevelsService]
 })
 export class ShootComponent implements OnInit {
   
@@ -20,24 +23,32 @@ export class ShootComponent implements OnInit {
   scoreChange: number;
   missedClicks = 0;
   isPaused = false;
+  levels: Level[];
+  currentLevel: Level;
+  currentLevelIndex = 0;
+  levelChanged = false;
 
-  newTargetInterval = 500;
-  hideTargetInterval = 3000;
-  typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving', 'flashing' ];
+  // newTargetInterval = 500;
+  // hideTargetInterval = 3000;
+  // typesFrequency = [ 'basic', 'basic', 'small', 'pulse', 'moving', 'flashing' ];
 
-  constructor(private dynamicComponentService: DynamicComponentService/*, private viewContainerRef: ViewContainerRef*/) { }
+  constructor(private dynamicComponentService: DynamicComponentService, private levelsService: LevelsService) { }
 
   ngOnInit() {
-    setInterval(() => {
-      if (!this.isPaused) {
-        this.addTarget();
-      }
-    }, this.newTargetInterval + Math.random() * 500);
+    this.levelsService.loadLevels().then((res) => {
+      this.levels = res['levels'];
+      this.currentLevel = this.levels[this.currentLevelIndex];
+      setInterval(() => {
+        if (!this.isPaused) {
+          this.addTarget();
+        }
+      }, this.currentLevel.newTargetInterval + Math.random() * 500);
+    });
   }
 
   addTarget() {
     this.dynamicComponentService.setRootViewContainerRef(this.viewContainerRef);
-    const target: ComponentRef<DynamicTargetComponent> = this.dynamicComponentService.addDynamicTarget(this.hideTargetInterval);
+    const target: ComponentRef<DynamicTargetComponent> = this.dynamicComponentService.addDynamicTarget(this.currentLevel.hideTargetInterval);
     
     this.setTargetType(target.instance);
     
@@ -45,6 +56,7 @@ export class ShootComponent implements OnInit {
     target.instance.shot.subscribe((shotTarget: DynamicTargetComponent) => {
       this.score += shotTarget.config.score; 
       this.scoreChange = shotTarget.config.score; 
+      this.updateLevel();
       // remove target
       setTimeout(() => {
         const targetIndex = this.viewContainerRef.indexOf(target.hostView);
@@ -56,6 +68,7 @@ export class ShootComponent implements OnInit {
 
   scoreTitleEffect() {
     this.scoreChangedA = true;
+    
     setTimeout(() => {
       this.scoreChangedA = false;
     }, 200);
@@ -70,8 +83,8 @@ export class ShootComponent implements OnInit {
   }
 
   setTargetType(target: DynamicTargetComponent) {
-    const i = Math.floor(Math.random() * this.typesFrequency.length);
-    target.setType(this.typesFrequency[i]);
+    const i = Math.floor(Math.random() * this.currentLevel.typesFrequency.length);
+    target.setType(this.currentLevel.typesFrequency[i]);
   }
 
   onClick() {
@@ -83,4 +96,14 @@ export class ShootComponent implements OnInit {
     this.dynamicComponentService.pause(this.isPaused);
   }
 
+  updateLevel() {
+    if (this.score >= this.currentLevel.nextLevelStarts && this.levels.length > this.currentLevelIndex + 1) {
+      this.currentLevelIndex++;
+      this.currentLevel = this.levels[this.currentLevelIndex];
+      this.levelChanged = true;
+      setTimeout(() => {
+        this.levelChanged = false;
+      }, 1500);
+    }
+  }
 }

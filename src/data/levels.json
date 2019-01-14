@@ -1,0 +1,18 @@
+{
+  "levels": [
+    {
+      "levelNumber": 1,
+      "nextLevelStarts": 10,
+      "newTargetInterval": 500,
+      "hideTargetInterval": 3000,
+      "typesFrequency": [ "basic", "basic", "pulse" ]
+    },
+    {
+      "levelNumber": 2,
+      "nextLevelStarts": 100,
+      "newTargetInterval": 300,
+      "hideTargetInterval": 3000,
+      "typesFrequency": [ "basic", "basic", "small", "pulse", "moving", "flashing" ]
+    }
+  ]
+}
