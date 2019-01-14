@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { Router, NavigationStart } from '@angular/router';
 })
 
 export class AppComponent {
+    
   title = 'app';
   previousUrl: string;
 

@@ -35,7 +35,7 @@
     <form [formGroup]="startGameForm" (ngSubmit)="startGame()" >
       <div class="form-group">
         <label>Rows</label>
-        <input type="number" id="rows" class="form-control" formControlName="rows"/>
+        <input #rows type="number" id="rows" class="form-control" formControlName="rows"/>
         <div *ngIf="startGameForm.controls.rows.invalid && startGameForm.controls.rows.touched" class="cross-validation-error-message alert alert-danger">
             Rows is required!
         </div>

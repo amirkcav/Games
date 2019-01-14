@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 
 import { Card } from '../../../models/card';
@@ -32,7 +32,9 @@ export class MemoryGameComponent implements OnInit {
   startGameForm: FormGroup;
   gameStarted = false;
 
-  constructor(private modalService: BsModalService) {
+  @ViewChild('rows') rowsInput: ElementRef;
+  
+  constructor(private modalService: BsModalService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -44,6 +46,8 @@ export class MemoryGameComponent implements OnInit {
     // https://github.com/angular/material2/issues/5268#issuecomment-416686390
     setTimeout(() => {
       this.modalRef = this.modalService.show(this.modal, { class: 'start-game-modal', ignoreBackdropClick: true });
+      // set initial focus on rows input. from https://stackoverflow.com/questions/34522306/focus-on-newly-added-input-element#answer-34573219
+      this.renderer.selectRootElement('#rows').focus();
     });
   }
 
@@ -120,6 +124,7 @@ export class MemoryGameComponent implements OnInit {
     this.selectedCards.length = 0;
 
     this.modalRef = this.modalService.show(this.modal, { class: 'start-game-modal' });
+    this.renderer.selectRootElement('#rows').focus();
   }
 
   isGameOver() {
