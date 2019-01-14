@@ -1,3 +1,7 @@
+/* ::ng-deep body {
+  background: repeating-linear-gradient(60deg, #f6f6f6, #d6d6d6 25px, #f6f6f6 50px);
+} */
+
 #shoot-area {
   position: relative;
   border: 1px solid #666;
@@ -6,6 +10,8 @@
   margin: 30px;
   overflow: hidden;
   text-align: center;
+  background: repeating-radial-gradient(circle, #fff 20px, #eee 40px, #fff 60px);
+  /* background: repeating-radial-gradient(circle, #fea 20px, #ace 40px, #aff 60px); */
 }
 
 #shoot-area.paused {
@@ -85,17 +91,11 @@
 #new-level-label.level-changed .level-number {
   animation: NewLevel 1s infinite;
   animation-delay: 0.5s;
-  /* color: blue;
-  text-shadow: blue 0 0 30px; */
-  /* font-size: 9rem; */
   transform: scale(1.2);
-  /* text-shadow: lightblue 0 0 20px; */
 }
 
 @keyframes NewLevel {
-  /* 20% { text-shadow: blue 0 0 20px; } */
   25% { text-shadow: lightblue 0 0 20px; }
   50% { text-shadow: blue 0 0 20px; }
   75% { text-shadow: lightblue 0 0 20px; }
-  /* 80% { text-shadow: blue 0 0 20px; } */
 }

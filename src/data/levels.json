@@ -12,7 +12,7 @@
       "nextLevelStarts": 100,
       "newTargetInterval": 300,
       "hideTargetInterval": 3000,
-      "typesFrequency": [ "basic", "basic", "small", "pulse", "moving", "flashing" ]
+      "typesFrequency": [ "basic", "basic", "small", "pulse", "moving", "flashing", "rotating" ]
     }
   ]
 }

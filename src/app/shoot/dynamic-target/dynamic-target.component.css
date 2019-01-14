@@ -14,7 +14,7 @@
 .target.shot {
   background: #f55;
   box-shadow: lightyellow 0 0 10px 0;
-  z-index: -1;
+  z-index: 0;
 }
 
 .target-basic {
@@ -134,4 +134,24 @@
 
 ::ng-deep .paused .target {
   animation-play-state: paused;
+}
+
+.target-rotating {
+  width: 200px;
+  height: 35px;
+  background: repeating-radial-gradient(circle, #fff 10px, #38c 20px, #fff 30px);
+  box-shadow: #333 0 0 15px 0;
+  animation: Rotating 2s linear infinite;
+  border-radius: 0;
+  transition: 1s;
+}
+
+.target-rotating.shot {
+  background: repeating-radial-gradient(circle, #fff 10px, #f00 20px, #fff 30px);
+  height: 0px;
+  /* width: 50px; */
+}
+
+@keyframes Rotating {
+  100% { transform: rotateZ(360deg) }
 }

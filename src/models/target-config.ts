@@ -27,6 +27,10 @@ export class TargetConfig {
         this.score = 4;
         this.shotEffectDuration = 750;
         break;
+      case 'rotating':
+        this.score = 4;
+        this.shotEffectDuration = 750;
+        break;
       default:
         this.score = 1;
         this.shotEffectDuration = 750;

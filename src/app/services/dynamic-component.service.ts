@@ -32,15 +32,6 @@ export class DynamicComponentService {
     this.rootViewContainer.insert(component.hostView);
     // auto hide.
     if (hideDelay) {
-      // const to = setTimeout(() => {
-      //   // don't auto-hide shot target (so shot animations won't be cut).
-      //   if (!component.instance.isShot) {
-      //     const targetIndex = this.rootViewContainer.indexOf(component.hostView);
-      //     if (targetIndex >= 0) {
-      //       this.rootViewContainer.remove(targetIndex);
-      //     }
-      //   }
-      // }, hideDelay);
       const to = this.timeoutService.setTimeout(() => {
         // don't auto-hide shot target (so shot animations won't be cut).
         if (!component.instance.isShot) {
