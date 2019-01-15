@@ -1,3 +1,14 @@
+::ng-deep body {
+  --title-height: 50px;
+}
+
 #game-wrapper {
   height: 100vh;
+}
+
+#title-row {
+  direction: rtl;
+  height: var(--title-height);
+  padding: 20px 30px 0 30px;
+  font-size: 2rem;
 }
