@@ -42,12 +42,14 @@ export class MemoryGameComponent implements OnInit {
       'rows': new FormControl(this.rows, [Validators.required]),
       'cols': new FormControl(this.cols, [Validators.required])
     }, { validators: [ this.isNumberOfCardsEven ] });
+    this.modalService.onShown.subscribe(() => {
+      // set initial focus on rows input. from https://stackoverflow.com/questions/34522306/focus-on-newly-added-input-element#answer-34573219
+      this.renderer.selectRootElement('#rows').focus();
+    });
     // opening the modal is in timeout to prevent ExpressionChangedAfterItHasBeenCheckedError.
     // https://github.com/angular/material2/issues/5268#issuecomment-416686390
     setTimeout(() => {
       this.modalRef = this.modalService.show(this.modal, { class: 'start-game-modal', ignoreBackdropClick: true });
-      // set initial focus on rows input. from https://stackoverflow.com/questions/34522306/focus-on-newly-added-input-element#answer-34573219
-      this.renderer.selectRootElement('#rows').focus();
     });
   }
 
