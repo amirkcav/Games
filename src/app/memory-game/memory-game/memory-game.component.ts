@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 
 import { Card } from '../../../models/card';
@@ -11,8 +11,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./memory-game.component.css'],
   providers: [BsModalService]
 })
-export class MemoryGameComponent implements OnInit {
-
+export class MemoryGameComponent implements OnInit, OnDestroy {
+  
   // @Input() rows;
   // @Input() cols;
   rows: number;
@@ -51,6 +51,10 @@ export class MemoryGameComponent implements OnInit {
     setTimeout(() => {
       this.modalRef = this.modalService.show(this.modal, { class: 'start-game-modal', ignoreBackdropClick: true });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.modalRef.hide();
   }
 
   arrayOne(n: number): any[] {
