@@ -1,14 +1,16 @@
 import { Component, Renderer2, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 
+declare var HeDate: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-    
+export class AppComponent implements OnInit {    
+  
   title = 'app';
   previousUrl: string;
   date: string;
