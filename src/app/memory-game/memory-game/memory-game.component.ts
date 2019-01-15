@@ -107,7 +107,7 @@ export class MemoryGameComponent implements OnInit {
       if (this.isGameOver()) {
         this.gameOver = true;
       }
-    }, 1000);
+    }, 1500);
   }
 
   wrongPair() {
