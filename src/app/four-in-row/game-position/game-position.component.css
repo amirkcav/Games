@@ -1,0 +1,24 @@
+#game-position {
+  height: 75px;
+  width: 75px;
+  /* background: #acf; */
+  display: inline-block;
+  padding: 4px;
+}
+
+#position-circle {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background: white;
+  transition: 0.3s;
+}
+
+.position-available:hover #position-circle {
+  background: #ddd;
+  cursor: pointer;
+}
+
+/* .position-taken #position-circle {
+  background: green;
+} */

@@ -1,0 +1,5 @@
+<div id="game-position" class="position-{{positionData.state}}">
+  <div id="position-circle" (click)="positionData.state === availableState && onClick()" [ngStyle]="{ 'background': positionData.takenBy }">
+    
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div id="board-wrapper" class="clearfix">
+  <!-- <label>{{ yourTurn ? 'Your turn' : 'Other player turn' }}</label> -->
+  <div id="board" [ngClass]="{ 'game-over': isGameOver }">
+    <ng-container *ngFor="let row of getArray(rows); let rowIndex = index">
+      <div class="game-row">
+        <ng-container *ngFor="let col of getArray(columns); let colIndex = index">
+          
+          <app-game-position [positionData]="positions[rowIndex][colIndex]" (positionClick)="(!multiPlayer || yourTurn) && positionClick($event)">
+
+          </app-game-position>
+
+        </ng-container> 
+      </div>
+    </ng-container>
+    <button id="restart-button" class="btn btn-primary" (click)="restart()">Restart</button>
+  </div>
+
+  <div id="players-area" class="pull-right">
+    <label id="players-area-title">Whose turn?</label>
+    <ng-container *ngFor="let player of players; let i = index">
+      <div class="player-div" [ngClass]="{'active': i === turn}" [ngStyle]="{ 'background': player }">
+        <p *ngIf="playerId === i" class="you-text">YOU</p>
+      </div>
+    </ng-container>
+  </div>
+
+  <div id="message-area" [ngClass]="{'show': isGameOver}"> <!--*ngIf="isGameOver"-->
+    <div id="message-content">
+      <ng-container *ngIf="winner < 0">
+        <span id="losing-message">Game Over</span>
+      </ng-container>
+      <ng-container *ngIf="winner >= 0">
+        <label id="winning-message">
+          <ng-container *ngIf="!multiPlayer">
+            Player <span class="player-number">{{ turn + 1 }}</span> Won!
+          </ng-container>
+          <ng-container *ngIf="multiPlayer">          
+            You {{ youWon ? 'WON!!!' : 'Lost.' }}
+          </ng-container> 
+        </label>
+        <!-- <label id="winning-message">You {{ youWon ? 'WON!!!' : 'Lost.' }}</label> -->
+      </ng-container>
+      <button class="btn btn-primary" (click)="restart()" style="margin-top: 25px;">Play again</button>      
+    </div>
+  </div>
+
+  <ng-template #startGameModal>
+    <div class="modal-header">
+      <h3 class="modal-title pull-left">Start Game</h3>
+      <button type="button" *ngIf="gameStarted" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <button class="btn btn-info" (click)="modalRef.hide()">Play alone</button>
+      <button class="btn btn-primary" (click)="anotherPlayerWaiting ? playWithPlayer() : waitFroPlayer()">{{ anotherPlayerWaiting ? 'Play with another player' : 'Wait for another player' }}</button>
+      <label *ngIf="waitingForAnotherPlayer"><span id="waiting-animation"><span></span></span> Wating...</label>
+    </div>
+  </ng-template>
+
+</div>

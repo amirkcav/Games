@@ -1,0 +1,148 @@
+#board {
+  /* display: flex;
+  flex-wrap: wrap; */
+  transition: 1s;
+  padding: 30px;
+  border: 2px solid #999;
+  border-radius: 15px;
+  background: #acf;
+  float: left;
+  /* position: relative; */
+  text-align: center;
+}
+
+#board-wrapper {
+  width: 800px;
+  margin: 50px auto;  
+  /* border: 2px solid #999;
+  border-radius: 15px;
+  background: white; */
+}
+
+#restart-button {
+  margin-top: 10px;
+}
+
+#players-area .player-div {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: 0.3s;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.7;
+}
+
+#players-area .player-div.active {
+  transform: scale(1.1);
+  box-shadow: #000 0 0 15px 2px;
+  opacity: 1;
+}
+
+#players-area-title {
+  font-size: 2.5rem;
+  margin-top: 35px;
+  text-shadow: #6af 0 0 3px;
+}
+
+#message-area {
+  visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(100,100,100,0.3);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#message-area.show {
+  /* transition: opacity 3s; */
+  visibility: visible;
+  opacity: 1;
+}
+
+#message-content {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 300px;
+  background: white;
+  text-align: center;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: #000 0px 0px 20px, #000 0 0 5px inset;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+#losing-message {
+  text-shadow: blue 0 0 10px, red 0 0 10px, black 0 0 10px;
+}
+
+#winning-message {
+  animation: winning2 1.3s infinite linear;
+  display: block;
+}
+
+@keyframes winning {
+  0%, 100% { text-shadow: blue 2px 2px 10px, red 2px 2px 10px, black 2px 2px 10px; }
+  25% { text-shadow: blue 2px -2px 10px, red 2px -2px 10px, black 2px -2px 10px; }
+  50% { text-shadow: blue -2px -2px 10px, red -2px -2px 10px, black -2px -2px 10px; }
+  75% { text-shadow: blue -2px 2px 10px, red -2px 2px 10px, black -2px 2px 10px; }
+}
+
+@keyframes winning2 {
+  0%, 100% { text-shadow: blue 0 0 10px, red 0 0 10px, black 0 0 10px; }
+  50% { text-shadow: blue 0 0 25px, red 0 0 25px, black 0 0 25px; }
+}
+
+#winning-message .player-number {
+  font-size: 3rem;
+}
+
+/* #board.game-over .game-row {
+  pointer-events: none;
+} */
+
+.player-div .you-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ddd;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-shadow: white 0 0 10px;
+}
+
+.player-div.active .you-text {
+  color: white;
+}
+
+#waiting-animation {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 3px;
+  position: relative;
+  animation: waitingAnimation 1s infinite linear;
+  background: repeating-linear-gradient(60deg, #33f, #f6f6f6);
+  padding: 3px;
+}
+
+#waiting-animation > span {
+  background: white;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+@keyframes waitingAnimation {
+  100% { transform: rotateZ(360deg); }
+}

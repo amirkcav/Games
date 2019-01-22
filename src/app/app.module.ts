@@ -10,10 +10,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShootComponent } from './shoot/shoot/shoot.component';
 import { DynamicTargetComponent } from './shoot/dynamic-target/dynamic-target.component';
+import { FourInRowComponent } from './four-in-row/four-in-row/four-in-row.component';
+import { GamePositionComponent } from './four-in-row/game-position/game-position.component';
 
 const appRoutes: Routes = [
   { path: 'memory', component: MemoryGameComponent },
   { path: 'shoot', component: ShootComponent },
+  { path: 'fourInRow', component: FourInRowComponent },
   { path: '', redirectTo: '/shoot', pathMatch: 'full' }
 ];
 
@@ -23,7 +26,9 @@ const appRoutes: Routes = [
     CardComponent,
     MemoryGameComponent,
     ShootComponent,
-    DynamicTargetComponent
+    DynamicTargetComponent,
+    FourInRowComponent,
+    GamePositionComponent
   ],
   imports: [
     BrowserModule,
