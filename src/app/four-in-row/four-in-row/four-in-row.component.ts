@@ -15,7 +15,7 @@ export class FourInRowComponent implements OnInit {
   @ViewChild('startGameModal') private modal: ElementRef;
   modalRef: BsModalRef;
   
-  private url = 'http://localhost:5000';  
+  private url = 'http://localhost:5000';     
   private socket;
   playerId: number;
   anotherPlayerWaiting = false;
